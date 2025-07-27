@@ -8,10 +8,18 @@ import styles from './page.module.css'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
+type User = {
+	id: number
+	name: string
+	email: string
+	isBlocked: boolean
+	lastLogin: string | null
+}
+
 dayjs.extend(relativeTime)
 
 export default function Home() {
-	const [users, setUsers] = useState([])
+	const [users, setUsers] = useState<User[]>([])
 	const [selectedIds, setSelectedIds] = useState<number[]>([])
 	const router = useRouter()
 
@@ -113,7 +121,7 @@ export default function Home() {
 					</tr>
 				</thead>
 				<tbody>
-					{users.map((user: any) => (
+					{users.map((user) => (
 						<tr key={user.id}>
 							<td className={styles.firstColumn}>
 								<label className={styles.checkbox}>
@@ -147,7 +155,7 @@ export default function Home() {
 				</div>
 			)}
 			<div className={styles.mobileCards}>
-				{users.map((user: any) => (
+				{users.map((user) => (
 					<div className={styles.card} key={user.id}>
 						<label className={styles.checkbox}>
 							<input
