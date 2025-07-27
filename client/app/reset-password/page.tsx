@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import axios from 'axios'
 import styles from './reset-password.module.scss'
 
-export default function ResetPasswordPage() {
+function ResetPasswordInner() {
 	const router = useRouter()
 	const searchParams = useSearchParams()
 	const token = searchParams.get('token')
@@ -72,5 +72,13 @@ export default function ResetPasswordPage() {
 				</form>
 			</div>
 		</div>
+	)
+}
+
+export default function ResetPasswordPage() {
+	return (
+		<Suspense fallback={<div>Загрузка...</div>}>
+			<ResetPasswordInner />
+		</Suspense>
 	)
 }
