@@ -1,0 +1,90 @@
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background: linear-gradient(to right, #1f1235, #2a0f4f);
+}
+
+.formSection {
+	background-color: rgba(255, 255, 255, 0.05);
+	padding: 40px;
+	border-radius: 12px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	color: #e2d7ff;
+	width: 100%;
+	max-width: 400px;
+}
+
+.logo {
+	font-size: 32px;
+	font-weight: 800;
+	margin-bottom: 10px;
+	color: #c49cff;
+}
+
+.subtitle {
+	margin-bottom: 30px;
+	color: #aaa0d4;
+}
+
+.form label {
+	display: block;
+	margin-bottom: 6px;
+	font-size: 14px;
+	color: #d5c9ff;
+}
+
+.form input {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 16px;
+	border: none;
+	border-radius: 8px;
+	background-color: #2e1a4f;
+	color: #fff;
+	font-size: 14px;
+}
+
+.form input::placeholder {
+	color: #aaa0d4;
+}
+
+.form button {
+	width: 100%;
+	padding: 12px;
+	border: none;
+	border-radius: 8px;
+	background-color: #9d69ff;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.form button:hover {
+	background-color: #b184ff;
+}
+
+.linkText {
+	text-align: center;
+	margin-top: 16px;
+	color: #c4b3ff;
+	font-size: 14px;
+}
+
+.linkText a {
+	color: #cfa9ff;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.linkText a:hover {
+	text-decoration: underline;
+}
+
+.errorMessage {
+	color: #ff9494;
+	text-align: center;
+	margin-bottom: 16px;
+}
