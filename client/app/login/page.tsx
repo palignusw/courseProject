@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import styles from './LoginPage.module.scss'
 import { getToken, setToken } from '../lib/token'
-import  { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import apiInstance from '../lib/apiInstance'
 
 export default function LoginPage() {
@@ -11,17 +11,16 @@ export default function LoginPage() {
 	const [password, setPassword] = useState('')
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
+	const [rememberMe, setRememberMe] = useState(false)
 
 	const router = useRouter()
-
 
 	useEffect(() => {
 		const token = getToken()
 		if (token) {
-			router.replace('/') 
+			router.replace('/')
 		}
 	}, [])
-
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
@@ -35,7 +34,8 @@ export default function LoginPage() {
 			})
 
 			const data = response.data
-			setToken(data.access_token)
+			setToken(data.access_token, rememberMe)
+
 			router.push('/')
 		} catch (err: any) {
 			const message =
@@ -49,8 +49,8 @@ export default function LoginPage() {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.formSection}>
-				<h1 className={styles.logo}>THE APP</h1>
-				<p className={styles.subtitle}>Start your journey</p>
+				<h1 className={styles.logo}>Itransition Project</h1>
+				<p className={styles.subtitle}>Sign in to continue</p>
 				<form onSubmit={handleSubmit} className={styles.form}>
 					<div>
 						<label>Email</label>
@@ -75,7 +75,12 @@ export default function LoginPage() {
 
 					<div className={styles.options}>
 						<label>
-							<input type='checkbox' /> Remember me
+							<input
+								type='checkbox'
+								checked={rememberMe}
+								onChange={() => setRememberMe(prev => !prev)}
+							/>
+							<div className={styles.rememberMe}>Remember me</div>
 						</label>
 						<a href='/forgot-password'>Forgot password?</a>
 					</div>

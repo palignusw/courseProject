@@ -24,6 +24,11 @@ export default function Home() {
 	const [selectedIds, setSelectedIds] = useState<number[]>([])
 	const router = useRouter()
 
+	const handleLogout = () => {
+		removeToken()
+		router.push('/login')
+	}
+
 	const fetchUsers = async () => {
 		const token = getToken()
 		if (!token) return router.push('/login')
@@ -81,6 +86,14 @@ export default function Home() {
 
 	return (
 		<div className={styles.container}>
+			<div className={styles.topBar}>
+				<button
+					className={`${styles.button} ${styles.logout}`}
+					onClick={handleLogout}
+				>
+					Logout
+				</button>
+			</div>
 			<h2 className={styles.title}>Users</h2>
 			<div className={styles.buttonGroup}>
 				<button
