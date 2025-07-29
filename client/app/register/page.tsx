@@ -26,7 +26,7 @@ export default function Register() {
 			})
 			router.push('/login')
 		} catch (err: any) {
-			setError(err.response?.data?.message || 'Ошибка регистрации')
+			setError(err.response?.data?.message || 'Registration failed')
 		} finally {
 			setLoading(false)
 		}
@@ -54,7 +54,7 @@ export default function Register() {
 							type='email'
 							value={email}
 							onChange={e => setEmail(e.target.value)}
-							placeholder='example@mail.com'
+							placeholder='any@gmail.com'
 							required
 						/>
 					</div>

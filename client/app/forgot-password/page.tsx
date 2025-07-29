@@ -14,11 +14,11 @@ export default function ForgotPasswordPage() {
 
 		try {
 			await apiInstance.post('/auth/forgot-password', { email })
-			setSuccess('Ссылка для сброса отправлена! Проверьте почту.')
+			setSuccess('confirmation Link sent to your email')
 			setEmail('')
 			setError('')
 		} catch (err: any) {
-			setError(err.response?.data?.message || 'Ошибка при отправке письма')
+			setError(err.response?.data?.message || 'error sending confirmation')
 			setSuccess('')
 		}
 	}
@@ -38,12 +38,12 @@ export default function ForgotPasswordPage() {
 				<form onSubmit={handleSubmit} className={styles.form}>
 					<input
 						type='email'
-						placeholder='Введите ваш email'
+						placeholder='Text your email'
 						value={email}
 						onChange={e => setEmail(e.target.value)}
 						required
 					/>
-					<button type='submit'>Отправить ссылку</button>
+					<button type='submit'>Send link</button>
 				</form>
 			</div>
 		</div>

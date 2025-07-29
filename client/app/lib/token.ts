@@ -9,7 +9,6 @@ export function setToken(token: string, rememberMe: boolean = false) {
 }
 
 export function getToken(): string | null {
-	// Сначала ищем в localStorage, потом в sessionStorage
 	return (
 		localStorage.getItem(ACCESS_TOKEN_KEY) ||
 		sessionStorage.getItem(ACCESS_TOKEN_KEY)

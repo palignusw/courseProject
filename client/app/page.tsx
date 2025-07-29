@@ -48,8 +48,11 @@ export default function Home() {
 		const token = getToken()
 		if (!token) return
 
+		if (selectedIds.length === 0) return
+
 		const url =
-			`${process.env.NEXT_PUBLIC_API_URL}/users` + (action === 'delete' ? '' : `/${action}`)
+			`${process.env.NEXT_PUBLIC_API_URL}/users` +
+			(action === 'delete' ? '' : `/${action}`)
 		const method = action === 'delete' ? 'delete' : 'patch'
 
 		await axios({
@@ -72,9 +75,9 @@ export default function Home() {
 
 	const toggleSelectAll = () => {
 		if (isAllSelected) {
-			setSelectedIds([]) // снять всё
+			setSelectedIds([])
 		} else {
-			setSelectedIds(users.map(user => user.id)) // выделить всех
+			setSelectedIds(users.map(user => user.id))
 		}
 	}
 	const isAllSelected =

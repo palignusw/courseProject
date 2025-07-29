@@ -19,12 +19,12 @@ function ResetPasswordInner() {
 		e.preventDefault()
 
 		if (!token) {
-			setError('Токен отсутствует в ссылке')
+			setError('token is required')
 			return
 		}
 
 		if (password !== confirm) {
-			setError('Пароли не совпадают')
+			setError('password dont match ')
 			return
 		}
 
@@ -34,17 +34,17 @@ function ResetPasswordInner() {
 				password,
 			})
 
-			setSuccess('Пароль успешно сброшен! Перенаправляем...')
+			setSuccess('password changed successfully')
 			setTimeout(() => router.push('/login'), 2000)
 		} catch (err: any) {
-			setError(err.response?.data?.message || 'Ошибка при сбросе пароля')
+			setError(err.response?.data?.message || 'error resetting password')
 		}
 	}
 
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.formBox}>
-				<h2 className={styles.title}>Сброс пароля</h2>
+				<h2 className={styles.title}>change password</h2>
 
 				{error && (
 					<p className={`${styles.message} ${styles.error}`}>{error}</p>
@@ -56,19 +56,19 @@ function ResetPasswordInner() {
 				<form onSubmit={handleSubmit} className={styles.form}>
 					<input
 						type='password'
-						placeholder='Новый пароль'
+						placeholder='New password'
 						value={password}
 						onChange={e => setPassword(e.target.value)}
 						required
 					/>
 					<input
 						type='password'
-						placeholder='Подтвердите пароль'
+						placeholder='Confirm password'
 						value={confirm}
 						onChange={e => setConfirm(e.target.value)}
 						required
 					/>
-					<button type='submit'>Сбросить пароль</button>
+					<button type='submit'>Change password</button>
 				</form>
 			</div>
 		</div>
@@ -77,7 +77,7 @@ function ResetPasswordInner() {
 
 export default function ResetPasswordPage() {
 	return (
-		<Suspense fallback={<div>Загрузка...</div>}>
+		<Suspense fallback={<div>Loading...</div>}>
 			<ResetPasswordInner />
 		</Suspense>
 	)
