@@ -26,7 +26,7 @@ export default function ForgotPasswordPage() {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.formBox}>
-				<h2 className={styles.title}>Восстановление пароля</h2>
+				<h2 className={styles.title}>Recover password</h2>
 
 				{error && (
 					<p className={`${styles.message} ${styles.error}`}>{error}</p>

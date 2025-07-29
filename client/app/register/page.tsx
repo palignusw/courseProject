@@ -38,7 +38,7 @@ export default function Register() {
 				<h1 className={styles.logo}>Itransition Project</h1>
 				<p className={styles.subtitle}>Create your account</p>
 				<form onSubmit={handleSubmit} className={styles.form}>
-					<div>
+					<div className={styles.inputGroup}>
 						<label>Name</label>
 						<input
 							type='text'
@@ -48,7 +48,7 @@ export default function Register() {
 							required
 						/>
 					</div>
-					<div>
+					<div className={styles.inputGroup}>
 						<label>Email</label>
 						<input
 							type='email'
@@ -58,7 +58,7 @@ export default function Register() {
 							required
 						/>
 					</div>
-					<div>
+					<div className={styles.inputGroup}>
 						<label>Password</label>
 						<input
 							type='password'
