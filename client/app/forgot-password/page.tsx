@@ -14,7 +14,7 @@ export default function ForgotPasswordPage() {
 
 		try {
 			await axios.post(
-				`${process.env.NEXT_PUBLIC_API_URL}auth/forgot-password`,
+				`${process.env.NEXT_PUBLIC_API_URL}/auth/forgot-password`,
 				{ email }
 			)
 			setSuccess('Ссылка для сброса отправлена! Проверьте почту.')
