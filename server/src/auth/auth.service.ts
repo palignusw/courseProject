@@ -76,7 +76,7 @@ export class AuthService {
     }
 
     const token = uuidv4();
-    const expires = new Date(Date.now() + 1000 * 60 * 60); // 1 час
+    const expires = new Date(Date.now() + 1000 * 60 * 60);
 
     user.resetPasswordToken = token;
     user.resetPasswordExpires = expires;

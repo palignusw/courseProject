@@ -17,7 +17,7 @@ export default function LoginPage() {
 	useEffect(() => {
 		const token = getToken()
 		if (token) {
-			router.replace('/') // редиректим на главную, если токен уже есть
+			router.replace('/') 
 		}
 	}, [])
 
