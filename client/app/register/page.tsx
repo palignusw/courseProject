@@ -35,7 +35,7 @@ export default function Register() {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.formSection}>
-				<h1 className={styles.logo}>THE APP</h1>
+				<h1 className={styles.logo}>Itransition Project</h1>
 				<p className={styles.subtitle}>Create your account</p>
 				<form onSubmit={handleSubmit} className={styles.form}>
 					<div>
