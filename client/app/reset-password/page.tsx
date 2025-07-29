@@ -2,8 +2,8 @@
 
 import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import axios from 'axios'
 import styles from './reset-password.module.scss'
+import apiInstance from '../lib/apiInstance'
 
 function ResetPasswordInner() {
 	const router = useRouter()
@@ -29,7 +29,7 @@ function ResetPasswordInner() {
 		}
 
 		try {
-			await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/reset-password`, {
+			await apiInstance.post('/auth/reset-password', {
 				token,
 				password,
 			})

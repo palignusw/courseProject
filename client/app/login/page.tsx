@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import styles from './LoginPage.module.scss'
 import { getToken, setToken } from '../lib/token'
 import  { useRouter } from 'next/navigation'
+import apiInstance from '../lib/apiInstance'
 
 export default function LoginPage() {
 	const [email, setEmail] = useState('')
@@ -28,24 +29,18 @@ export default function LoginPage() {
 		setLoading(true)
 
 		try {
-			const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ email, password }),
+			const response = await apiInstance.post('/auth/login', {
+				email,
+				password,
 			})
 
-			const data = await response.json()
-
-			if (!response.ok) {
-				throw new Error(data.message || 'Login failed')
-			}
-
+			const data = response.data
 			setToken(data.access_token)
 			router.push('/')
 		} catch (err: any) {
-			setError(err.message)
+			const message =
+				err.response?.data?.message || err.message || 'Login failed'
+			setError(message)
 		} finally {
 			setLoading(false)
 		}

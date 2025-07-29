@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import axios from 'axios'
 import styles from './forgot-password.module.scss'
+import apiInstance from '../lib/apiInstance'
 
 export default function ForgotPasswordPage() {
 	const [email, setEmail] = useState('')
@@ -13,10 +13,7 @@ export default function ForgotPasswordPage() {
 		e.preventDefault()
 
 		try {
-			await axios.post(
-				`${process.env.NEXT_PUBLIC_API_URL}/auth/forgot-password`,
-				{ email }
-			)
+			await apiInstance.post('/auth/forgot-password', { email })
 			setSuccess('Ссылка для сброса отправлена! Проверьте почту.')
 			setEmail('')
 			setError('')

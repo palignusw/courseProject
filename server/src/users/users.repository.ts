@@ -1,6 +1,6 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ConflictException, Injectable } from '@nestjs/common';
@@ -109,12 +109,23 @@ export class UsersRepository {
   }
 
   async updateStatus(ids: number[], isBlocked: boolean) {
-    await this.usersRepository.update(ids, { isBlocked });
+    if (!ids || ids.length === 0) {
+      return {
+        message: 'No user IDs provided',
+        updatedCount: 0,
+      };
+    }
+
+    const result = await this.usersRepository.update(
+      { id: In(ids), isBlocked: !isBlocked }, 
+      { isBlocked },
+    );
+
     return {
       message: isBlocked
         ? 'Users successfully blocked'
         : 'Users successfully unblocked',
-      ids,
+      updatedCount: result.affected || 0,
     };
   }
 }

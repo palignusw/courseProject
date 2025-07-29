@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import axios from 'axios'
 import { getToken, removeToken } from '../app/lib/token'
 import styles from './page.module.css'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import apiInstance from './lib/apiInstance'
+import axios from 'axios'
 
 type User = {
 	id: number
@@ -28,7 +29,7 @@ export default function Home() {
 		if (!token) return router.push('/login')
 
 		try {
-			const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+			const res = await apiInstance.get('/users', {
 				headers: { Authorization: 'Bearer ' + token },
 			})
 			setUsers(res.data)

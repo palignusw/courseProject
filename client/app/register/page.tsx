@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import axios from 'axios'
 import styles from './Register.module.scss'
+import apiInstance from '../lib/apiInstance'
 
 export default function Register() {
 	const [name, setName] = useState('')
@@ -19,7 +19,7 @@ export default function Register() {
 		setError('')
 
 		try {
-			await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
+			await apiInstance.post('/users', {
 				email,
 				password,
 				name,
