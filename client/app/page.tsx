@@ -28,7 +28,7 @@ export default function Home() {
 		if (!token) return router.push('/login')
 
 		try {
-			const res = await axios.get('http://localhost:3001/users', {
+			const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
 				headers: { Authorization: 'Bearer ' + token },
 			})
 			setUsers(res.data)
@@ -43,7 +43,7 @@ export default function Home() {
 		if (!token) return
 
 		const url =
-			'http://localhost:3001/users' + (action === 'delete' ? '' : `/${action}`)
+			`${process.env.NEXT_PUBLIC_API_URL}/users` + (action === 'delete' ? '' : `/${action}`)
 		const method = action === 'delete' ? 'delete' : 'patch'
 
 		await axios({
@@ -121,7 +121,7 @@ export default function Home() {
 					</tr>
 				</thead>
 				<tbody>
-					{users.map((user) => (
+					{users.map(user => (
 						<tr key={user.id}>
 							<td className={styles.firstColumn}>
 								<label className={styles.checkbox}>
@@ -155,7 +155,7 @@ export default function Home() {
 				</div>
 			)}
 			<div className={styles.mobileCards}>
-				{users.map((user) => (
+				{users.map(user => (
 					<div className={styles.card} key={user.id}>
 						<label className={styles.checkbox}>
 							<input

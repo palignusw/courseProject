@@ -19,7 +19,7 @@ export default function Register() {
 		setError('')
 
 		try {
-			await axios.post('http://localhost:3001/users', {
+			await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
 				email,
 				password,
 				name,

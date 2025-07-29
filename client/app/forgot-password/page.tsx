@@ -13,7 +13,10 @@ export default function ForgotPasswordPage() {
 		e.preventDefault()
 
 		try {
-			await axios.post('http://localhost:3001/auth/forgot-password', { email })
+			await axios.post(
+				`${process.env.NEXT_PUBLIC_API_URL}auth/forgot-password`,
+				{ email }
+			)
 			setSuccess('Ссылка для сброса отправлена! Проверьте почту.')
 			setEmail('')
 			setError('')

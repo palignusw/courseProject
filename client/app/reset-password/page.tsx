@@ -29,7 +29,7 @@ function ResetPasswordInner() {
 		}
 
 		try {
-			await axios.post('http://localhost:3001/auth/reset-password', {
+			await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/reset-password`, {
 				token,
 				password,
 			})
