@@ -167,7 +167,8 @@ export default function Home() {
 							checked={isAllSelected}
 							onChange={toggleSelectAll}
 						/>
-						<span className={styles.checkmark}></span> Select All
+						<span className={styles.checkmark}></span>
+						<div>Select All</div>
 					</label>
 				</div>
 			)}
