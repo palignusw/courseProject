@@ -82,7 +82,7 @@ export class AuthService {
     user.resetPasswordExpires = expires;
     await this.usersRepository.save(user);
 
-    const resetUrl = `http://localhost:3000/reset-password?token=${token}`;
+    const resetUrl = `https://course-project-three.vercel.app/reset-password?token=${token}`;
 
     await this.mailerService.sendMail({
       to: user.email,
